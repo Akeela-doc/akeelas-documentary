@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akeela's Documentary | Tamil & English</title>
+  <style>
+    /* ---------- Main Styles ---------- */
+    body {font-family: Arial, sans-serif; margin:0; background:#eef3f9 url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat fixed center/cover; color:#333;}
+    header {background:linear-gradient(135deg, rgba(27,127,74,0.95), rgba(10,120,90,0.95)); color:white; padding:50px 20px; text-align:center; animation: fadeSlide 1.5s ease-out;}@keyframes fadeSlide {from {opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);}}
+    nav {background:#1b7f4a; padding:12px; text-align:center; position:sticky; top:0;}
+    nav a {color:white; margin:0 15px; text-decoration:none; font-weight:bold;}
+    section {padding:40px; max-width:1100px; margin:30px auto; background:rgba(255,255,255,0.80); backdrop-filter: blur(2px); border-radius:12px;}
+    h2 {color:#1b7f4a; text-align:center;}
+    .services {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;}
+    .card {background:white; padding:20px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.15); text-align:center; transition:transform 0.3s;}    
+    .card:hover {transform:translateY(-6px);}    
+    .card img {width:80px; height:80px; margin-bottom:15px;}
+    footer {background:#1b7f4a; color:white; text-align:center; padding:20px;}
+    .lang {font-size:14px; color:#555;} .title {font-size:42px; letter-spacing:1px; animation: glow 2.5s ease-in-out infinite alternate;} .subtitle {font-size:16px; margin-top:10px; color:#e8f5ee;} @keyframes glow {from {text-shadow:0 0 5px rgba(255,255,255,0.4);} to {text-shadow:0 0 18px rgba(255,255,255,0.9);}}
+
+    /* ---------- Popup styles ---------- */
+    .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;animation:fadeIn 0.8s ease;}
+    .popup-box{background:#e8f5ee;border:2px solid #1b7f4a;border-radius:14px;padding:30px;max-width:380px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.3);animation:popScale 0.6s ease;}
+    .popup-box h3{color:#1b7f4a;margin-bottom:10px;font-size:24px;}
+    .popup-box p{color:#333;font-size:16px;}
+    .popup-box button{margin-top:20px;padding:10px 22px;background:#1b7f4a;color:white;border:none;border-radius:20px;font-size:14px;cursor:pointer;}
+    .popup-box button:hover{background:#14663b;}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes popScale{from{transform:scale(0.7);}to{transform:scale(1);}}
+  </style>
+</head>
+<body>
+
+<!-- Popup -->
+<div class="popup-overlay" id="welcomePopup">
+  <div class="popup-box">
+    <h3>Welcome to Akeela's Documentary</h3>
+    <p>Your document is almost there 📄✨</p>
+    <button onclick="closePopup()">Continue</button>
+  </div>
+</div>
+
+<header>
+  <h1 class="title">Akeela's Documentary</h1>
+  <p class="lang subtitle">Tamil & English | ICT • Typing • PDF • Exam Papers</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>
+    I provide computer related documentary services for students, teachers, and individuals.<br>
+    நான் ஆவண தயாரிப்பு தொடர்பான சேவைகளை மாணவர்கள், ஆசிரியர்கள் மற்றும் அனைவருக்கும் வழங்குகிறேன்.
+  </p>
+</section>
+
+<section id="services">
+  <h2>My Services</h2>
+  <div class="services">
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="service icon" />
+      <h3>Exam Paper Creation</h3>
+      <p>(Any Subject).</p>
+      <p class="lang"> வினாத்தாள் தயாரித்தல்(typing)</p>
+    </div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="service icon" />
+      <h3>Typing Services</h3>
+      <p>Tamil & English typing, assignments, notes.</p>
+      <p class="lang">தமிழ் / ஆங்கில டைப்பிங் சேவை</p>
+    </div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="service icon" />
+      <h3>PDF Editing</h3>
+      <p>Convert, edit, format PDFs professionally.</p>
+      <p class="lang">PDF திருத்தம் மற்றும் மாற்றம்</p>
+    </div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="service icon" />
+      <h3>Documents</h3>
+      <p>Letters, reports, school documents.</p>
+      <p class="lang">ஆவணங்கள் தயாரித்தல்</p>
+    </div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="service icon" />
+      <h3>Quizes</h3>
+      <p>Google Form Creation, AI Quiz generation</p>
+      <p class="lang">Google Form Creation, AI Quiz generation தயாரித்தல்</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: arakeela36@gmail.com</p>
+  <p>WhatsApp: +94-0756586885</p>
+  <p>Phone: +94-0775714041</p>
+</section>
+
+<footer>
+  <p>© 2026 Akeela's Documentary | All Rights Reserved</p>
+</footer>
+
+<script>
+  function closePopup(){
+    document.getElementById('welcomePopup').style.display='none';
+  }
+</script>
+
+</body>
+</html>
