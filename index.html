@@ -123,13 +123,63 @@
   }
 }
 
-<!-- Notice Banner as Image with Text -->
-<div class="notice-image-banner">
-  <img src="https://images.unsplash.com/photo-1606761568851-2ec7debeecb5?auto=format&fit=crop&w=1200&q=80" alt="Notice Banner">
-  <div class="notice-text">
-    💡 Charges are flexible and I’m available anytime for your needs!
-  </div>
-</div>
+/* ---------- Notice Image Banner ---------- */
+.notice-image-banner {
+  position: relative;
+  max-width: 100%;
+  margin: 30px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  animation: fadeSlideBanner 1.5s ease forwards;
+}
+
+.notice-image-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.notice-image-banner .notice-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+  padding: 15px 25px;
+  background: rgba(27,127,74,0.6);
+  border-radius: 12px;
+}
+
+/* Animation */
+@keyframes fadeSlideBanner {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  .notice-image-banner .notice-text {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+}
+
 
   </style>
 </head>
