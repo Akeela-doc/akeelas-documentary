@@ -28,6 +28,53 @@
     .popup-box button:hover{background:#14663b;}
     @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
     @keyframes popScale{from{transform:scale(0.7);}to{transform:scale(1);}}
+
+    /* -------- About Me / Qualification Card -------- */
+.about-card {
+  background: linear-gradient(135deg, #e8f5ee, #ffffff);
+  border-left: 6px solid #1b7f4a;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  animation: slideUp 1s ease;
+}
+
+.about-card h2 {
+  color: #1b7f4a;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.qual-box p {
+  background: #ffffff;
+  padding: 18px 20px;
+  margin: 15px auto;
+  border-radius: 12px;
+  max-width: 650px;
+  font-size: 16px;
+  line-height: 1.6;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.qual-box p:hover {
+  transform: translateY(-5px);
+}
+
+.qual-box span {
+  color: #1b7f4a;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.qual-box small {
+  color: #555;
+  font-size: 14px;
+}
+
+@keyframes slideUp {
+  from {opacity:0; transform:translateY(30px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
   </style>
 </head>
 <body>
