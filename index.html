@@ -75,11 +75,11 @@
   to {opacity:1; transform:translateY(0);}
 }
 
-    /* WhatsApp Floating Button */
+/* WhatsApp Floating Button - Responsive */
 .whatsapp-btn {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 20px;
+  right: 20px;
   background: #25D366;
   color: white;
   font-weight: bold;
@@ -89,12 +89,85 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   text-decoration: none;
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.whatsapp-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+
+/* Hover effect */
 .whatsapp-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  .whatsapp-btn {
+    bottom: 15px;
+    right: 15px;
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .whatsapp-btn img {
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+  }
+}
+
+/* ---------- Notice Banner Styles ---------- */
+.notice-banner {
+  background: linear-gradient(90deg, #1b7f4a, #38bdf8);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 20px auto;
+  max-width: 900px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  position: relative;
+  animation: slideFade 1.2s ease forwards;
+}
+
+/* Optional: small arrow on left */
+.notice-banner::before {
+  content: "📌";
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+/* Slide + Fade Animation */
+@keyframes slideFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px){
+  .notice-banner {
+    font-size: 14px;
+    padding: 12px 15px;
+  }
 }
 
   </style>
@@ -162,6 +235,11 @@
       <p>Google Form Creation, AI Quiz generation</p>
       <p class="lang">Google Form Creation, AI Quiz generation தயாரித்தல்</p>
     </div>
+    <!-- Flexible Charges Banner -->
+<div class="notice-banner">
+  💡 Charges are flexible and I’m available anytime for your needs!
+</div>
+
   </div>
 </section>
 
@@ -187,10 +265,12 @@
 
     <p><span>📜 Professional Qualification</span><br>
       Post Graduate Diploma in Education (PGDE)
+      <small>Open University of Srilanka</small>
     </p>
 
     <p><span>🏫 Service Category</span><br>
       Sri Lanka Teachers’ Service (SLTS) – 2-II
+      <small>T/T/Vipulananda College</small>
     </p>
   </div>
 </section>
