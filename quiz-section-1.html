@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<title>ICT Practice Quiz</title>
+
+<style>
+  /* சிறுவர்களுக்கான வண்ணமயமான வடிவமைப்பு */
+  body { 
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; 
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h2 { 
+    text-align: center; 
+    color: #ffffff; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-size: 28px;
+    background: #ff6b6b;
+    padding: 10px;
+    border-radius: 15px;
+    display: table;
+    margin: 20px auto;
+  }
+
+  .question { 
+    display: none; 
+    background: #ffffff; 
+    padding: 30px; 
+    margin: 20px auto; 
+    width: 80%; 
+    border-radius: 25px; 
+    border: 5px solid #4ecdc4;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    animation: bounceIn 0.8s;
+  }
+
+  @keyframes bounceIn {
+    0% { transform: scale(0.1); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  .question.active { display: block; }
+
+  p { font-size: 22px; color: #2c3e50; font-weight: bold; }
+
+  .options label { 
+    display: block; 
+    padding: 15px; 
+    margin: 10px 0; 
+    background: #f0f3f5; 
+    border-radius: 15px; 
+    cursor: pointer; 
+    font-size: 18px;
+    transition: 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .options label:hover { 
+    background: #ffe66d; 
+    transform: translateX(10px);
+    border: 2px solid #ff6b6b;
+  }
+
+  button { 
+    margin-top: 20px; 
+    padding: 12px 30px; 
+    font-size: 18px; 
+    border: none; 
+    border-radius: 50px; 
+    background: #4ecdc4; 
+    color: white; 
+    cursor: pointer; 
+    box-shadow: 0 5px 0 #36b3a8;
+    transition: 0.2s;
+    font-weight: bold;
+  }
+
+  button:active { transform: translateY(4px); box-shadow: 0 1px 0 #36b3a8; }
+
+  button.prev-btn { background: #ff6b6b; box-shadow: 0 5px 0 #ee5253; margin-right: 15px; }
+
+  #timer { 
+    text-align: center; 
+    font-size: 24px; 
+    font-weight: bold;
+    color: #ffffff; 
+    background: rgba(0,0,0,0.2);
+    width: fit-content;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border-radius: 20px;
+  }
+
+  #nameInputDiv { 
+    background: white; 
+    padding: 40px; 
+    border-radius: 30px; 
+    width: 60%; 
+    margin: 100px auto; 
+    text-align: center;
+    border: 6px dashed #ff6b6b;
+  }
+
+  #nameInputDiv input { 
+    padding: 15px; 
+    font-size: 18px; 
+    width: 70%; 
+    border-radius: 15px; 
+    border: 3px solid #4ecdc4; 
+    margin-bottom: 20px;
+  }
+
+  #result {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 30px;
+    text-align: center;
+    color: #ff6b6b;
+    font-size: 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 70%;
+    margin: 50px auto;
+  }
+</style>
+</head>
+
+<body>
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+<audio id="successSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+
+<h2>T/T/Vipulananda College </h2>
+<h2>ICT Quiz Competition</h2>
+<h2>Section 1</h2>
+
+<div id="nameInputDiv">
+  <p>உங்கள் பெயரை உள்ளிடவும்:</p>
+  <input type="text" id="studentName" placeholder="உங்கள் பெயர்">
+  <button onclick="startQuiz()">Start Quiz</button>
+</div>
+
+<div id="timer"></div>
+
+<form id="quizForm" style="display:none;">
+
+<!-- Q1 -->
+<div class="question active">
+<p>1. கணினியின் தந்தை என அழைக்கப்படுபவர் யார்?</p>
+<div class="options">
+<label><input type="radio" name="q1" value="A"> பிப்பட்</label>
+<label><input type="radio" name="q1" value="B"> சார்லஸ் பாபேஜ்</label>
+<label><input type="radio" name="q1" value="C"> பில் கேட்ஸ்</label>
+<label><input type="radio" name="q1" value="D"> ஸ்டீவ் ஜொப்ஸ்</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<p>2. கணினியின் ‘மூளை’ என அழைக்கப்படும் பகுதி எது?</p>
+<div class="options">
+<label><input type="radio" name="q2" value="A"> Motherboard</label>
+<label><input type="radio" name="q2" value="B"> CPU</label>
+<label><input type="radio" name="q2" value="C"> Hard Disk</label>
+<label><input type="radio" name="q2" value="D"> RAM</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<p>3. உள்ளீட்டுச் சாதனம் எது?</p>
+<div class="options">
+<label><input type="radio" name="q3" value="A"> Software</label>
+<label><input type="radio" name="q3" value="B"> Printer</label>
+<label><input type="radio" name="q3" value="C"> Mouse</label>
+<label><input type="radio" name="q3" value="D"> Monitor</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<p>4. தரவுகளை தற்காலிகமாக சேமிக்கும் நினைவகம்?</p>
+<div class="options">
+<label><input type="radio" name="q4" value="A"> CD</label>
+<label><input type="radio" name="q4" value="B"> Hard Disk</label>
+<label><input type="radio" name="q4" value="C"> RAM</label>
+<label><input type="radio" name="q4" value="D"> Pen Drive</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<p>5. கோப்புகளை ஒழுங்குபடுத்த பயன்படுவது?</p>
+<div class="options">
+<label><input type="radio" name="q5" value="A"> Desktop</label>
+<label><input type="radio" name="q5" value="B"> Folder</label>
+<label><input type="radio" name="q5" value="C"> CPU</label>
+<label><input type="radio" name="q5" value="D"> Wallpaper</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<p>6. முதலாவது தலைமுறை கணினியில் பயன்படுத்தப்பட்ட கூறு?</p>
+<div class="options">
+<label><input type="radio" name="q6" value="A"> Transistor</label>
+<label><input type="radio" name="q6" value="B"> Vacuum Tube</label>
+<label><input type="radio" name="q6" value="C"> IC</label>
+<label><input type="radio" name="q6" value="D"> Microprocessor</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<p>7. MS Word எந்த வகை மென்பொருள்?</p>
+<div class="options">
+<label><input type="radio" name="q7" value="A"> Spreadsheet</label>
+<label><input type="radio" name="q7" value="B"> Word Processing</label>
+<label><input type="radio" name="q7" value="C"> Database</label>
+<label><input type="radio" name="q7" value="D"> Presentation</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<p>8. இணையதளங்களை பார்க்க பயன்படும் மென்பொருள்?</p>
+<div class="options">
+<label><input type="radio" name="q8" value="A"> MS Paint</label>
+<label><input type="radio" name="q8" value="B"> Web Browser</label>
+<label><input type="radio" name="q8" value="C"> VLC</label>
+<label><input type="radio" name="q8" value="D"> Calculator</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<p>9. தேடுபொறி எது?</p>
+<div class="options">
+<label><input type="radio" name="q9" value="A"> Google</label>
+<label><input type="radio" name="q9" value="B"> Facebook</label>
+<label><input type="radio" name="q9" value="C"> WhatsApp</label>
+<label><input type="radio" name="q9" value="D"> OS</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<p>10. HTML என்பதன் விரிவாக்கம்?</p>
+<div class="options">
+<label><input type="radio" name="q10" value="A"> High Text Machine Language</label>
+<label><input type="radio" name="q10" value="B"> HyperText Markup Language</label>
+<label><input type="radio" name="q10" value="C"> Home Tool Markup Language</label>
+<label><input type="radio" name="q10" value="D"> Hyper Tool Multi Language</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Q11–25 SAME STYLE CONTINUE -->
+
+<div class="question">
+<p>11. Secondary Storage உதாரணம்?</p>
+<div class="options">
+<label><input type="radio" name="q11" value="A"> RAM</label>
+<label><input type="radio" name="q11" value="B"> Registers</label>
+<label><input type="radio" name="q11" value="C"> Hard Disk</label>
+<label><input type="radio" name="q11" value="D"> Cache</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>12.பின்வருவனவற்றுள் இயக்குதளம்(OS) எது?</p>
+<div class="options">
+<label><input type="radio" name="q12" value="A"> Excel</label>
+<label><input type="radio" name="q12" value="B"> Windows</label>
+<label><input type="radio" name="q12" value="C"> Photoshop</label>
+<label><input type="radio" name="q12" value="D"> Chrome</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>13. எளிய விளையாட்டுக்கள் உருவாக்க பயன்படும் மென்பொருள்?</p>
+<div class="options">
+<label><input type="radio" name="q13" value="A"> Notepad</label>
+<label><input type="radio" name="q13" value="B"> Scratch</label>
+<label><input type="radio" name="q13" value="C"> Access</label>
+<label><input type="radio" name="q13" value="D"> Calculator</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>14. Column & Row சந்திக்கும் இடம்?</p>
+<div class="options">
+<label><input type="radio" name="q14" value="A"> Box</label>
+<label><input type="radio" name="q14" value="B"> Cell</label>
+<label><input type="radio" name="q14" value="C"> Table</label>
+<label><input type="radio" name="q14" value="D"> Sheet</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>15. Algorithm-ஐ வரைபடமாக காட்டுவது?</p>
+<div class="options">
+<label><input type="radio" name="q15" value="A"> Pie Chart</label>
+<label><input type="radio" name="q15" value="B"> Flowchart</label>
+<label><input type="radio" name="q15" value="C"> Bar Chart</label>
+<label><input type="radio" name="q15" value="D"> Line Graph</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>16. ஒரு கட்டிடத்துக்குள் உள்ள வலையமைப்பு?</p>
+<div class="options">
+<label><input type="radio" name="q16" value="A"> WAN</label>
+<label><input type="radio" name="q16" value="B"> LAN</label>
+<label><input type="radio" name="q16" value="C"> Internet</label>
+<label><input type="radio" name="q16" value="D"> Bluetooth</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>17. AND gate – அனைத்து input 1 என்றால் output?</p>
+<div class="options">
+<label><input type="radio" name="q17" value="A"> 0</label>
+<label><input type="radio" name="q17" value="B"> 1</label>
+<label><input type="radio" name="q17" value="C"> -1</label>
+<label><input type="radio" name="q17" value="D"> 2</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>18. Multimedia-யில் சேராதது?</p>
+<div class="options">
+<label><input type="radio" name="q18" value="A"> Text</label>
+<label><input type="radio" name="q18" value="B"> Smell</label>
+<label><input type="radio" name="q18" value="C"> Audio</label>
+<label><input type="radio" name="q18" value="D"> Video</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>19. Database table-ல் column அழைக்கப்படுவது?</p>
+<div class="options">
+<label><input type="radio" name="q19" value="A"> Record</label>
+<label><input type="radio" name="q19" value="B"> Field</label>
+<label><input type="radio" name="q19" value="C"> File</label>
+<label><input type="radio" name="q19" value="D"> Database</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>20. Email address-ல் கட்டாய குறியீடு?</p>
+<div class="options">
+<label><input type="radio" name="q20" value="A"> #</label>
+<label><input type="radio" name="q20" value="B"> @</label>
+<label><input type="radio" name="q20" value="C"> $</label>
+<label><input type="radio" name="q20" value="D"> *</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>21. WWW விரிவாக்கம்?</p>
+<div class="options">
+<label><input type="radio" name="q21" value="A"> World Wide Web</label>
+<label><input type="radio" name="q21" value="B"> World Whole Web</label>
+<label><input type="radio" name="q21" value="C"> Wide World Web</label>
+<label><input type="radio" name="q21" value="D"> Web World Wide</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>22. Screen-ல் மிகச்சிறிய புள்ளி?</p>
+<div class="options">
+<label><input type="radio" name="q22" value="A"> Dot</label>
+<label><input type="radio" name="q22" value="B"> Pixel</label>
+<label><input type="radio" name="q22" value="C"> Bit</label>
+<label><input type="radio" name="q22" value="D"> Resolution</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>23. Email Subject பகுதியில் உள்ளிடுவது?</p>
+<div class="options">
+<label><input type="radio" name="q23" value="A"> முழு கடிதம்</label>
+<label><input type="radio" name="q23" value="B"> தலைப்பு</label>
+<label><input type="radio" name="q23" value="C"> முகவரி</label>
+<label><input type="radio" name="q23" value="D"> Password</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>24. Data → Process → ?</p>
+<div class="options">
+<label><input type="radio" name="q24" value="A"> Data</label>
+<label><input type="radio" name="q24" value="B"> Information</label>
+<label><input type="radio" name="q24" value="C"> Hardware</label>
+<label><input type="radio" name="q24" value="D"> Network</label>
+</div>
+<button type="button" class="prev-btn" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="question">
+<p>25. Internet பாதுகாப்பிற்கு செய்யக்கூடாதது?</p>
+<div class="options">
+<label><input type="radio" name="q25" value="A"> Password பாதுகாப்பு</label>
+<label><input type="radio" name="q25" value="B"> அறியாத link click</label>
+<label><input type="radio" name="q25" value="C"> Antivirus பயன்பாடு</label>
+<label><input type="radio" name="q25" value="D"> Personal data பாதுகாப்பு</label>
+</div>
+<button type="button" onclick="prevQuestion()">Previous</button>
+<button type="button" onclick="showResult()">Submit</button>
+</div>
+
+
+</form>
+
+<h2 id="result"></h2>
+
+<script>
+const answers={
+q1:"B",q2:"B",q3:"C",q4:"C",q5:"B",
+q6:"B",q7:"B",q8:"B",q9:"A",q10:"B",
+q11:"C",q12:"B",q13:"B",q14:"B",q15:"B",
+q16:"B",q17:"B",q18:"B",q19:"B",q20:"B",
+q21:"A",q22:"B",q23:"B",q24:"B",q25:"B"
+};
+
+let current=0;
+const questions=document.querySelectorAll(".question");
+let timer;
+let timeLeft = 1800; 
+let studentName = "";
+
+function startQuiz(){
+  const nameInput = document.getElementById("studentName").value.trim();
+  if(!nameInput){ alert("தயவுசெய்து உங்கள் பெயரை உள்ளிடவும்"); return; }
+  studentName = nameInput;
+  document.getElementById("nameInputDiv").style.display="none";
+  document.getElementById("quizForm").style.display="block";
+  startTimer();
+}
+
+function startTimer(){
+  updateTimerDisplay();
+  timer = setInterval(()=>{
+    timeLeft--;
+    updateTimerDisplay();
+    if(timeLeft <=0){
+      clearInterval(timer);
+      alert("நேரம் முடிந்துவிட்டது! Quiz submit செய்யப்படுகிறது.");
+      showResult();
+    }
+  },1000);
+}
+
+function updateTimerDisplay(){
+  const mins = Math.floor(timeLeft/60);
+  const secs = timeLeft%60;
+  document.getElementById("timer").innerText = `Time Left: ${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+}
+
+function nextQuestion(){
+  const sel=questions[current].querySelector("input:checked");
+  if(!sel){ alert("ஒரு பதிலைத் தேர்வு செய்யவும்"); return; }
+  
+  if(current < questions.length - 1){
+    questions[current].classList.remove("active");
+    current++;
+    questions[current].classList.add("active");
+  }
+}
+
+function prevQuestion(){
+  if(current > 0){
+    questions[current].classList.remove("active");
+    current--;
+    questions[current].classList.add("active");
+  }
+}
+
+function showResult(){
+  clearInterval(timer);
+  let score=0;
+  for(let i=1;i<=25;i++){
+    const s=document.querySelector(`input[name=q${i}]:checked`);
+    if(s && s.value===answers["q"+i]) score++;
+  }
+  document.getElementById("quizForm").innerHTML="";
+  document.getElementById("result").innerHTML=
+    `🎉 ${studentName}, உங்கள் மதிப்பெண் : ${score} / 25 🎉`;
+
+}
+
+// ஒவ்வொரு முறையும் அடுத்த கேள்விக்குச் செல்லும் போது 'click' சத்தம் கேட்க
+function nextQuestion(){
+  const sel=questions[current].querySelector("input:checked");
+  if(!sel){ alert("ஒரு பதிலைத் தேர்வு செய்யவும்"); return; }
+  
+  document.getElementById("clickSound").play(); // சத்தம் போடு!
+
+  if(current < questions.length - 1){
+    questions[current].classList.remove("active");
+    current++;
+    questions[current].classList.add("active");
+  }
+}
+
+// முந்தைய கேள்விக்குச் செல்லும் போதும் சத்தம் கேட்க
+function prevQuestion(){
+  document.getElementById("clickSound").play(); // சத்தம் போடு!
+  if(current > 0){
+    questions[current].classList.remove("active");
+    current--;
+    questions[current].classList.add("active");
+  }
+}
+
+// முடிவில் பெரிய 'வெற்றி' சத்தம் கேட்க
+function showResult(){
+  clearInterval(timer);
+  document.getElementById("successSound").play(); // வெற்றி ஒலி!
+  
+  let score=0;
+  for(let i=1;i<=25;i++){
+    const s=document.querySelector(`input[name=q${i}]:checked`);
+    if(s && s.value===answers["q"+i]) score++;
+  }
+  document.getElementById("quizForm").innerHTML="";
+  document.getElementById("result").innerHTML=
+    `🎉 ${studentName}, உங்கள் மதிப்பெண் : ${score} / 25 🎉<br>
+    <span style="font-size:20px;">அற்புதமான முயற்சி! 🌟</span>`;
+}
+</script>
+
+</body>
+</html>
